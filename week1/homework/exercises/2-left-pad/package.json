@@ -1,0 +1,18 @@
+{
+  "name": "2-left-pad",
+  "version": "1.0.0",
+  "description": "Exercise 2: To the left, to the left...",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "HackYourFuture",
+    "Node.js"
+  ],
+  "author": "Aleksandr Shenshin",
+  "license": "ISC",
+  "dependencies": {
+    "left-pad": "^1.3.0"
+  }
+}

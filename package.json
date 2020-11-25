@@ -1,0 +1,33 @@
+{
+  "name": "node-js-homework",
+  "version": "1.0.0",
+  "description": "> If you are following the HackYourFuture curriculum we recommend you to start with module 1: [HTML/CSS/GIT](https://github.com/HackYourFuture/HTML-CSS). To get a complete overview of the HackYourFuture curriculum first, click [here](https://github.com/HackYourFuture/curriculum).",
+  "main": "index.js",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.8.0",
+    "@typescript-eslint/parser": "^4.8.0",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenshin/Node.js.git"
+  },
+  "keywords": [
+    "HYF",
+    "hack-your-future"
+  ],
+  "author": "Alex Shenshin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shenshin/Node.js/issues"
+  },
+  "homepage": "https://github.com/shenshin/Node.js#readme",
+  "dependencies": {
+    "typescript": "^4.0.5"
+  }
+}

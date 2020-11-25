@@ -1,0 +1,14 @@
+h1, #content {
+  font-family: 'Courier New', Courier, monospace;
+  -webkit-text-stroke-width: 1px;
+  text-shadow: 2px 2px 4px black;
+}
+h1 {
+  color: rgb(250, 221, 184);
+  font-size: 4rem;
+  -webkit-text-stroke-color:rgb(192, 192, 192);
+}
+#content { 
+  color: rgb(143, 159, 253);
+  font-size: 3rem;
+}
