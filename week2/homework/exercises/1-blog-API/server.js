@@ -51,14 +51,14 @@ function sendJSON(res, object) {
  * @param {function} action callback to be performed on success
  * @param {function} error callback printing the error
  */
-function parseParams(req, res, action, error) {
+function parseParams(req, res, error, action) {
   const { title } = req.params;
   const file = getFilePath(title);
-  if (fs.existsSync(file)) {
-    action(title, file);
+  if (!fs.existsSync(file)) {
+    responseFailure(res, error(title));
     return;
   }
-  responseFailure(res, error(title));
+  action(title, file);
 }
 
 /**
@@ -75,31 +75,46 @@ function writeBlog(req, res) {
  * Updates existing posts
  */
 function updatePost(req, res) {
-  parseParams(req, res, (title, file) => {
-    if (bodyError(req, res, 'content')) return;
-    fs.writeFileSync(file, req.body.content);
-    responseOK(res, `Post '${title}' was updated`);
-  }, (title) => `Update error. Post with the title '${title}' doesn't exist`);
+  parseParams(
+    req,
+    res,
+    (title) => `Update error. Post with the title '${title}' doesn't exist`,
+    (title, file) => {
+      if (bodyError(req, res, 'content')) return;
+      fs.writeFileSync(file, req.body.content);
+      responseOK(res, `Post '${title}' was updated`);
+    },
+  );
 }
 
 /**
  * Deletes posts
  */
 function deleteBlog(req, res) {
-  parseParams(req, res, (title, file) => {
-    fs.unlinkSync(file);
-    responseOK(res, `Blog '${title}' was deleted`);
-  }, (title) => `Delete error. Blog with the title '${title}' doesn't exist`);
+  parseParams(
+    req,
+    res,
+    (title) => `Delete error. Blog with the title '${title}' doesn't exist`,
+    (title, file) => {
+      fs.unlinkSync(file);
+      responseOK(res, `Blog '${title}' was deleted`);
+    },
+  );
 }
 
 /**
  * Reads selected post and sends to the client
  */
 function readBlog(req, res) {
-  parseParams(req, res, (title, file) => {
-    const content = fs.readFileSync(file, 'utf8');
-    sendJSON(res, { title, content });
-  }, (title) => `Read error. Blog with the title '${title}' doesn't exist`);
+  parseParams(
+    req,
+    res,
+    (title) => `Read error. Blog with the title '${title}' doesn't exist`,
+    (title, file) => {
+      const content = fs.readFileSync(file, 'utf8');
+      sendJSON(res, { title, content });
+    },
+  );
 }
 
 /**
