@@ -38,7 +38,7 @@ function bodyError(req, res, ...fields) {
  * Sends an object to a client as a JSON string
  */
 function sendJSON(res, object) {
-  res.setHeader('Content-Type', 'application/json');
+  res.type('application/json');
   res.status(200);
   res.end(JSON.stringify(object));
 }
@@ -48,8 +48,8 @@ function sendJSON(res, object) {
  * and loads corresponfing blog file
  * @param {*} req request
  * @param {*} res response
- * @param {function} action callback to be performed on success
  * @param {function} error callback printing the error
+ * @param {function} action callback to be performed on success
  */
 function parseParams(req, res, error, action) {
   const { title } = req.params;

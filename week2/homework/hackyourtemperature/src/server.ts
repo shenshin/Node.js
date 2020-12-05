@@ -15,6 +15,11 @@ app.get('/', (req, res) => {
 });
 app.post('/weather', (req, res) => {
   const { cityName } = req.body;
+  if ([undefined, ''].some(value => cityName === value)) {
+    res.status(400);
+    res.end("specify 'cityName' propery");
+    return;
+  }
   res.status(200);
   res.type('application/json');
   res.end(JSON.stringify({ cityName }));
