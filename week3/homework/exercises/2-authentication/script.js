@@ -11,7 +11,8 @@
 const fetch = require('node-fetch');
 const base64 = require('base-64');
 
-async function checkStatus(res) {
+// throws an error if sever reports about authentication failure
+async function validateCredentials(res) {
   if (res.status === 401) {
     const response = await res.json();
     throw new Error(response.error.message);
@@ -24,7 +25,7 @@ async function printBooks() {
   const credentials = base64.encode('admin:hvgX8KlVEa');
   try {
     let response = await fetch('https://restapiabasicauthe-sandbox.mxapps.io/api/books', { headers: { Authorization: `Basic ${credentials}` } });
-    response = await checkStatus(response);
+    response = await validateCredentials(response);
     const books = await response.json();
     console.log(books);
   } catch (err) {
