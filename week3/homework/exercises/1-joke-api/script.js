@@ -19,7 +19,7 @@ async function printChuckNorrisJoke() {
     const { joke } = (await response.json()).value;
     console.log(joke);
   } catch (err) {
-    console.error('Request error:', err.message);
+    console.error('Response error:', err.message);
   }
 }
 
